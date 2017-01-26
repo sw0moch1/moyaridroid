@@ -11,8 +11,11 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import invalid.ayasiiwa_rudo.client.android.BuildConfig;
+
 public class HttpUtil {
-    static final public String USER_AGENT = "moyaridroid 0.2.7 mod";
+    static final public String USER_AGENT = BuildConfig.VERSION_NAME;
+
     // Set the timeout in milliseconds until a connection is established.
     static final public int timeoutConnection = 60000;
     // Set the default socket timeout (SO_TIMEOUT)

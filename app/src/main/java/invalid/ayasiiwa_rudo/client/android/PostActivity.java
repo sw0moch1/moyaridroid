@@ -20,8 +20,11 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -115,6 +118,21 @@ public class PostActivity extends Activity implements Runnable {
                         clear();
                     }
                 });
+
+        // 顔文字のリスナー設定
+        LinearLayout tsuraList = (LinearLayout) findViewById(R.id.PostTsuraList);
+        for (int j = 0; j < tsuraList.getChildCount(); j++) {
+            Button b = (Button)tsuraList.getChildAt(j);
+            b.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int start = bodyEdit.getSelectionStart();
+                    int end   = bodyEdit.getSelectionEnd();
+                    Editable editable = bodyEdit.getText();
+                    editable.replace(Math.min( start, end ), Math.max( start, end ), ((Button)v).getText().toString());
+                }
+            });
+        }
 
         if (savedInstanceState != null) {
             String a[] = savedInstanceState.getStringArray("items");
